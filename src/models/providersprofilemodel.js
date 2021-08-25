@@ -17,12 +17,7 @@ var providerprofileSchema = mongoose.Schema({
     shopImage: { type: String, required: true },
     shopName: { type: String, required: true },
     address: { type: String, required: true },
-    whFromTime: { type: String, required: true },
-    whFromTimeType: { type: String, required: true },
-    whToTime: { type: String, required: true },
-    whToTimeType: { type: String, required: true },
-    wsFrom: { type: String, required: true },
-    wsTo: { type: String, required: true },
+    desc: { type: String, required: true },
     longitude: { type: String, required: true },
     latitude: { type: String, required: true },
     // currentUid: { type: String, required: true }

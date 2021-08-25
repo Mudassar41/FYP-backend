@@ -22,6 +22,7 @@ router.post('/AddProviders', (req, res) => {
             data: result
         })
     }).catch((error) => {
+        console.log('this is error')
         console.log(error)
         res.status(500).json({
 
@@ -92,6 +93,18 @@ router.patch('/updateImageProvider', (req, res) => {
     console.log(req.body.id)
     console.log(req.body.imageLink)
     var updatedValue = { $set: { imageLink: req.body.imageLink } };
+    ProvidersModel.updateOne({ _id: req.body.id }, updatedValue).then((result) => {
+        res.status(200).json({ msg: "data updated" })
+    }).catch((error) => {
+        res.status(500).json({ msg: "error in updation" })
+    })
+
+})
+////////////////////////////////////
+router.patch('/updateToken', (req, res) => {
+
+    
+    var updatedValue = { $set: { deviceToken: req.body.deviceToken } };
     ProvidersModel.updateOne({ _id: req.body.id }, updatedValue).then((result) => {
         res.status(200).json({ msg: "data updated" })
     }).catch((error) => {

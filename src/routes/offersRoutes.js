@@ -22,7 +22,7 @@ router.post('/offers', (req, res) => {
 
 router.get('/getTasks/:Id', (req, res) => {
     var Id = req.params.Id;
-    OfferModel.find({ usersregistrationprofiles: Id }).populate('providerprofiles').populate('usersregistrationprofiles')
+    OfferModel.find({ usersregistrationprofiles: Id }).sort( { dateTime: -1 } ).populate('providerprofiles').populate('usersregistrationprofiles')
         .populate('providercategories').populate('serviceprovidersdatas').then((result) => {
             res.status(200).json({ data: result })
         }).catch((error) => {
@@ -45,7 +45,7 @@ router.get('/getSingleTask/:Id', (req, res) => {
 
 router.get('/getTasksforProvider/:Id', (req, res) => {
     var Id = req.params.Id;
-    OfferModel.find({ serviceprovidersdatas: Id }).populate('providerprofiles').populate('usersregistrationprofiles')
+    OfferModel.find({ serviceprovidersdatas: Id }).sort( { dateTime: -1 } ).populate('providerprofiles').populate('usersregistrationprofiles')
         .populate('providercategories').populate('serviceprovidersdatas').then((result) => {
             res.status(200).json({ data: result })
         }).catch((error) => {
@@ -79,6 +79,9 @@ router.patch('/updateTasksForRateReview', (req, res) => {
 })
 /////////////////////////////////////////////////////////////////////////
 router.patch('/updateTasksForRateReviewUser', (req, res) => {
+    console.log(req.body.providerRating)
+     console.log(req.body.providerReview)
+     
     var myquery = { _id: req.body.id }
     var newvalues = { $set: { providerRating: req.body.providerRating, providerReview: req.body.providerReview } };
     OfferModel.updateOne(myquery, newvalues).then((result) => {

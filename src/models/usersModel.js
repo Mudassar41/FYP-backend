@@ -29,6 +29,11 @@ var providerSchema = mongoose.Schema({
     userPassword: {
         type: String,
         required: true
+    },
+
+    deviceToke:{
+        type: String,
+        required: true
     }
 
 

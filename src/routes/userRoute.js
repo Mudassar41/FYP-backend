@@ -80,9 +80,9 @@ router.get('/getCurrentUserInfo/:id', (req, res) => {
 //updating userImage
 router.patch('/updateImage', (req, res) => {
     console.log(req.body.id)
-     console.log(req.body.userImage)
+    console.log(req.body.userImage)
     var updatedValue = { $set: { userImage: req.body.userImage } };
-    UserModel.updateOne( {_id: req.body.id}, updatedValue).then((result) => {
+    UserModel.updateOne({ _id: req.body.id }, updatedValue).then((result) => {
         res.status(200).json({ msg: "data updated" })
     }).catch((error) => {
         res.status(500).json({ msg: "error in updation" })
